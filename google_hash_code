@@ -1,0 +1,19 @@
+inp = []
+count = 0
+with open('e_also_big.in', 'r') as file_object:
+    for line in file_object:
+        inp.append(list(map(int, line.split())))
+pizza = inp[1][:]
+maxp = inp[0][0]
+while sum(pizza) > maxp:
+    diff = sum(pizza) - maxp
+    data = pizza[min(range(len(pizza)), key=lambda j:abs(pizza[j]-diff))]
+    pizza[pizza.index(data)] = 0
+    count = count + 1
+with open('e_output.txt', 'w') as file:
+    file.write(str(len(pizza)-count))
+    file.write("\n")
+    for i in range(len(pizza)):
+        if pizza[i] != 0:
+            file.write(str(i))
+            file.write(" ")
